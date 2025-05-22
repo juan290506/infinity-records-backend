@@ -1,15 +1,16 @@
 {
-  "name": "fonefo-kids-backend",
+  "name": "infinity-records-backend",
   "version": "1.0.0",
-  "description": "API Rest para Fonefo Kids",
+  "description": "API Rest para infinity records",
   "main": "index.mjs",
   "type": "module",
   "scripts": {
     "dev": "node --watch ./src/index.mjs"
   },
-  "author": "Juan Carlos Jiménez Gutiérrez <jcarlosj.dev@gmail.com>",
+  "author": "Juan Felipe Romero Cortes <juan2905sbr@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mongoose": "^8.15.0"
   }
 }
