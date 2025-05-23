@@ -1,4 +1,3 @@
-
 // Estructura de datos de mi documento.
 
 import mongoose from "mongoose";
@@ -24,15 +23,21 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         default: 'registered'
-    }
+    },
+    email: {
+        type: String,
+        trim: true,
+        required:[true, "El correo del usuario es obligatorio"],
+        match:[/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Por favor, introduce un correo electrónico válido.']
+    },
+
 }, {
-    timestamps: true, // Agrega las propiedades createdAt
+    timestamps: true, // Agrega las propiedades createdAt , updatedAt
     versionKey: false // contador __v de modificaciones del schema
 });
 
-
 //define el schema a una propiedad especifica
-const userModel = mongoose.Model(
+const userModel = mongoose.model(
     'users',           //Nombre de la colección a la que voy a asociar
     userSchema         //La estructura de datos a la que lo vamosa vincular
 );
