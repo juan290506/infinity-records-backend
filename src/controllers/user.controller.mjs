@@ -14,7 +14,7 @@ const createUser = async ( req, res ) => {
     }
     catch (error) {
         console.error(error);
-        res.json({msg:"Error: No se pudo registrar el producto"});
+        res.json({msg:"Error: No se pudo registrar el usuario"});
     }
 
 }
@@ -27,8 +27,30 @@ const getAllUser = async (req, res) => {
     }
     catch (error){
         console.error(error);
-        res.json({msg: "Error: No se pudo obtener el listado de productos"})
+        res.json({msg: "Error: No se pudo obtener el listado de usuarios"})
 
+    }
+
+
+    
+}
+
+const getUserById = async (req, res) => {
+    const userId = req.params.id;   //El nombre final dependera del nombre del  parametro de la ruta
+
+    try {
+        const data = await userModel.findOne({_id: userId});
+
+        //verifica si el prudcto no existe y lanza el respectivo mensaje al cliente
+        if( ! data ) {
+            return res.json({msg:"El usuario no se encuentra registrado"})
+        }
+
+        res.json(data);
+    }
+    catch (error){
+        console.error(error);
+        res.json({ msj: "Error:No se pudo encontrar el usuario"})
     }
 
 
@@ -39,5 +61,6 @@ const getAllUser = async (req, res) => {
 //exponer las funcionalidades para ser usadas por otros archivos
 export{
     createUser,
-    getAllUser
+    getAllUser,
+    getUserById
 }
