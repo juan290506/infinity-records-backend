@@ -75,11 +75,29 @@ const removeUserById = async (req, res) => {
 
 }
 
+const updateUserById = async (req, res) => {
+    const userId = req.params.id;
+    const inputData = req.body;
+
+    try{
+        const data = await userModel.findByIdAndUpdate (userId, inputData,{new:true});
+        res.json(data)
+    }
+    catch(error){
+        console.error(error);
+        res.json({msg: "Error: no se pudo actualizar el usuario"})
+    }
+
+    
+}
+
+
 
 //exponer las funcionalidades para ser usadas por otros archivos
 export{
     createUser,
     getAllUser,
     getUserById,
-    removeUserById
+    removeUserById,
+    updateUserById
 }
